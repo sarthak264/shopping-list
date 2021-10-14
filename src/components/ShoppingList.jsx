@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const ShoppingList = () => {
+  let removed;
   const [items, setItems] = useState([
     { itemName: "item 1", quantity: 1, isSelected: false },
     { itemName: "item 2", quantity: 3, isSelected: true },
@@ -66,7 +67,8 @@ const ShoppingList = () => {
   const deleteItem = (index) => {
     let newItems = [...items];
 
-    const removed = newItems.splice(index, 1);
+    removed = newItems.splice(index, 1);
+    console.log(removed);
 
     setItems(newItems);
   };
