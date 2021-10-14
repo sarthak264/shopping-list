@@ -79,6 +79,16 @@ input:focus {
   border-bottom: 1px #fbc1bb solid;
 }
 
+.corner {
+  display: flex;
+  align-items: center;
+}
+
+.dlt_btn {
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
 .item-name {
   cursor: pointer;
 }

@@ -7,11 +7,10 @@ import {
   faCircle,
   faCheckCircle,
   faPlus,
+  faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 const App = () => {
-  // HINT: each "item" in our list names a name,
-  // a boolean to tell if its been completed, and a quantity
   const [items, setItems] = useState([
     { itemName: "item 1", quantity: 1, isSelected: false },
     { itemName: "item 2", quantity: 3, isSelected: true },
@@ -65,6 +64,14 @@ const App = () => {
     setItems(newItems);
   };
 
+  const deleteItem = (index) => {
+    let newItems = [...items];
+
+    const removed = newItems.splice(index, 1);
+
+    setItems(newItems);
+  };
+
   const calculateTotal = () => {
     const totalItemCount = items.reduce((total, item) => {
       return total + item.quantity;
@@ -104,20 +111,28 @@ const App = () => {
                   </>
                 )}
               </div>
-              <div className="quantity">
-                <button>
+              <div className="corner">
+                <div className="quantity">
+                  <button>
+                    <FontAwesomeIcon
+                      icon={faChevronLeft}
+                      onClick={() => handleQuantityDecrease(index)}
+                    />
+                  </button>
+                  <span> {item.quantity} </span>
+                  <button>
+                    <FontAwesomeIcon
+                      icon={faChevronRight}
+                      onClick={() => handleQuantityIncrease(index)}
+                    />
+                  </button>
+                </div>
+                <div className="dlt_btn">
                   <FontAwesomeIcon
-                    icon={faChevronLeft}
-                    onClick={() => handleQuantityDecrease(index)}
+                    icon={faTrashAlt}
+                    onClick={() => deleteItem(index)}
                   />
-                </button>
-                <span> {item.quantity} </span>
-                <button>
-                  <FontAwesomeIcon
-                    icon={faChevronRight}
-                    onClick={() => handleQuantityIncrease(index)}
-                  />
-                </button>
+                </div>
               </div>
             </div>
           ))}
