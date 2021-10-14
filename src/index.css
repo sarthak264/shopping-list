@@ -56,7 +56,7 @@ body {
   background: transparent;
   color: #ec645b;
   width: 100%;
-  height: 30px;
+  padding-bottom: 0.1rem;
 }
 
 input::placeholder {
