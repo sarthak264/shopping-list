@@ -18,9 +18,11 @@ const App = () => {
   ]);
 
   const [inputValue, setInputValue] = useState("");
-  const [totalItemCount, setTotalItemCount] = useState(6);
 
   const handleAddButtonClick = () => {
+    if (inputValue === "") {
+      return;
+    }
     const newItem = {
       itemName: inputValue,
       quantity: 1,
@@ -31,7 +33,6 @@ const App = () => {
 
     setItems(newItems);
     setInputValue("");
-    calculateTotal();
   };
 
   const handleQuantityIncrease = (index) => {
@@ -40,7 +41,6 @@ const App = () => {
     newItems[index].quantity++;
 
     setItems(newItems);
-    calculateTotal();
   };
 
   const handleQuantityDecrease = (index) => {
@@ -53,7 +53,6 @@ const App = () => {
     }
 
     setItems(newItems);
-    calculateTotal();
   };
 
   const toggleComplete = (index) => {
@@ -70,14 +69,6 @@ const App = () => {
     const removed = newItems.splice(index, 1);
 
     setItems(newItems);
-  };
-
-  const calculateTotal = () => {
-    const totalItemCount = items.reduce((total, item) => {
-      return total + item.quantity;
-    }, 0);
-
-    setTotalItemCount(totalItemCount);
   };
 
   return (
@@ -97,7 +88,7 @@ const App = () => {
         </div>
         <div className="item-list">
           {items.map((item, index) => (
-            <div className="item-container">
+            <div className="item-container" key={index}>
               <div className="item-name" onClick={() => toggleComplete(index)}>
                 {item.isSelected ? (
                   <>
@@ -137,7 +128,6 @@ const App = () => {
             </div>
           ))}
         </div>
-        <div className="total">Total: {totalItemCount}</div>
       </div>
     </div>
   );
