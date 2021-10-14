@@ -1,0 +1,11 @@
+.log_in_page {
+  height: 100vh;
+  display: grid;
+  place-items: center center;
+}
+.log_in_btn {
+  color: black;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #1a1a1a;
+}
